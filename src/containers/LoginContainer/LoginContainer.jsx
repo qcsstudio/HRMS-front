@@ -1,11 +1,22 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRouter } from 'next/navigation'
+import { useParams  } from 'next/navigation';
+import { getCookie } from "cookies-next/client";
+import { getCookies } from "cookies-next";
 
-export default function LoginContainer() {
+export  default  function LoginContainer() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [client , setclinet] = useState(null);
+
+    const router = useRouter();
+    const searchParams = useParams ();
+    
+    console.log("router" , router);
+    console.log("searchParams" , searchParams);
 
   const validate = () => {
     const newErrors = {};
@@ -32,11 +43,16 @@ export default function LoginContainer() {
     }
   };
 
+  useEffect(()=>{
+   setclinet(getCookie('client'))
+  } , [])
+  
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
         <h2 className="mb-6 text-2xl font-semibold text-center text-gray-700">
-          LOGIN
+          LOGIN &nbsp;  <span className="uppercase">{client}</span> 
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

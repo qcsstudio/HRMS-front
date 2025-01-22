@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Home(){
+function Home(){  
   return (
     <div>
         This is Home Page
