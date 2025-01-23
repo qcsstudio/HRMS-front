@@ -1,17 +1,13 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-export  function middleware(request) {
-    const cookieStore =  cookies()
+export async function middleware(request) {
 
+  const cookieStore = await cookies()
   const host = request.headers.get('host'); 
-  console.log("host" , host);
-  
   const [subdomain] = host.split('.'); 
 
-  console.log("subdomain" , subdomain);
-
-  if (subdomain === 'www' || host === 'example.com') {
+  if (subdomain === 'www') {
     return NextResponse.next();
   }
 

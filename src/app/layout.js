@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressContentEditableWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressContentEditableWarning  >
+          >
         <AuthDataContextProvider>
            {children}
         </AuthDataContextProvider>
